@@ -1,0 +1,17 @@
+html {
+    width: 100%;
+}
+
+body {
+    background-color: #009edb;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}

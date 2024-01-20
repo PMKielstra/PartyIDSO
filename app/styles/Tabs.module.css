@@ -1,0 +1,30 @@
+.tabContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.tabDisplay {
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+.tabs {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+.tabs div {
+    text-align: center;
+    padding: 10px;
+    border-top: 5px solid white;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+.activeTab {
+    border-top: 5px solid #009edb !important
+}
