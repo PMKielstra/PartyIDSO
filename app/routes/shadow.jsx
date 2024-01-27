@@ -22,7 +22,7 @@ export default function Shadow() {
             <img src="/img/wireghost.svg" />
             <div>
             <h1>wireghost</h1>
-            <h2>ask me about alyosha</h2>
+            <h2>hacker, code cracker, slacker</h2>
             </div>
         </header>
         {

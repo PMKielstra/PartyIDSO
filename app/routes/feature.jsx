@@ -1,6 +1,7 @@
 import { useLoaderData } from "@remix-run/react";
 import { useEffect, useRef, useState } from "react";
 import ReactPlayer from 'react-player';
+import { useSearchParams } from "@remix-run/react";
 
 import SideQR from "../components/SideQR";
 import { useSocket } from "../utils/socket.jsx"
@@ -29,6 +30,7 @@ const alertAudio = "/aud/alert.mp3";
 
 export default function Index() {
     const idsoLink = useLoaderData();
+    const [searchParams, _setSearchParams] = useSearchParams();
     const socket = useSocket();
     const votes = useRef([0, 0, 0]);
     const [vid, setVid] = useState("/vid/intro.webm");
@@ -51,9 +53,12 @@ export default function Index() {
             setPlaying(true);
         });
     }, [socket]);
-    console.log(ReactPlayer);
+    var qrs = [{title: "Register device", href: idsoLink}];
+    if (searchParams.has("name")) {
+        qrs = [{title: "Connect to WiFi network (scan this one first!)", href: `WIFI:S:${searchParams.get("name")};T:WPA;P:${searchParams.get("pw")};;`}, qrs[0]];
+    }
     return (
-        <SideQR href={idsoLink} >
+        <SideQR qrs={qrs} >
             <ReactPlayer.default
                 ref={(p) => (player = p)}
                 width="100%"

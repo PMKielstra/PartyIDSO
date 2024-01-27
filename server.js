@@ -10,6 +10,8 @@ import express from "express";
 import morgan from "morgan";
 
 import { Server } from "socket.io";
+import open from "open";
+
 
 /** @typedef {import('@remix-run/node').ServerBuild} ServerBuild */
 
@@ -69,9 +71,11 @@ app.all("*", remixHandler);
 const port = process.env.PORT || 3000;
 httpServer.listen(port, async () => {
   console.log(`Express server listening on port ${port}`);
-
+  
   if (process.env.NODE_ENV === "development") {
     broadcastDevReady(initialBuild);
+  } else {
+    open(`http://localhost:${port}`);
   }
 });
 

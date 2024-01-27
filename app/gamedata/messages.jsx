@@ -111,25 +111,17 @@ export const messages = (randomSeed) => [
     {
         phase: 7,
         title: "Security for Alyosha",
-        author: "total_bacall",
+        author: "wireghost",
         content: <>
-            <p>
-            Every time Alyosha changed hands, whoever got it would throw up their own weird firewalls.  By now, its security is a huge mess.  Here&rsquo;s what you need to know.
-            </p>
-            <p>
-            To get to Alyosha, you have to make a path through a bunch of firewalls.  Each one exposes a number of &ldquo;ports&rdquo; which you can use to connect to it.  Lots of firewalls have vulnerabilities in their own systems, and, if you connect to the right port, your fancy IDSO systems should bust right through.
-            </p>
-            <p>
-            But there are also &ldquo;honeypots&rdquo; in the system.  These are fake vulnerabilities that we put in to try to catch hackers.  In short: connect to the wrong port on one of these firewalls and the system will detect you and kick you out.  You&rsquo;ll be back to square one.
-            </p>
-            <p>
-            I pulled together my notes on which ports were safe to exploit.  You&rsquo;re welcome, and thanks in advance.
-            </p>
+            <p>every time alyosha changed hands, whoever got it would put up a new bunch of firewalls for security.  the system is a huge mess now, but your fancy kit should be able to find a path through.</p>
+            <p>the only danger is that each of the firewalls also has &ldquo;honeypots&rdquo; built in.  they&rsquo;re fake vulnerabilities designed to catch hackers.  try to exploit one and the system kicks you out.</p>
+            <p>i pulled together my notes on which ports for which firewalls were safe to connect to and which represented honeypots.</p>
+            <p>i&rsquo;m not sure why i&rsquo;m telling you this.  maybe i&rsquo;m just sucking up to the new sheriff in town.  maybe not.</p>
             <table>
                 <thead>
                     <tr>
-                        <th>Firewall model</th>
-                        <th>Port</th>
+                        <th>firewall model</th>
+                        <th>port</th>
                     </tr>
                 </thead>
                 <tbody>

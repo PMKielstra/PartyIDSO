@@ -1,5 +1,7 @@
 import { networkInterfaces } from "os";
 
+import wifiName from "wifi-name";
+
 function getIPs() {
     const interfaces = networkInterfaces();
     var ips = [];
@@ -16,4 +18,8 @@ export function getIPv4addr() {
 
 export function getIPv4link(path="", https=false) {
     return `http${https ? "s" : ""}://${getIPv4addr()}/${path}`;
+}
+
+export function getWifiName() {
+    return wifiName.sync();
 }

@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
+
 import { useLoaderData } from "@remix-run/react";
 import SideQR from "../components/SideQR";
-import { getIPv4link } from "../utils/getIP";
+import { getIPv4link, getWifiName } from "../utils/getIP";
 
 export const meta = () => {
     return [
@@ -9,13 +11,30 @@ export const meta = () => {
 };
 
 export const loader = async () => {
-    return [getIPv4link("gm"), getIPv4link("feature")];
+    return [getIPv4link("gm"), getIPv4link("feature"), getWifiName()];
+}
+
+function getWifi(isUsingWifi, wifiName, wifiPassword) {
+    
 }
 
 export default function Index() {
-    const [gmLink, featureLink] = useLoaderData();
+    const [gmLink, featureLink, serverWifiName] = useLoaderData();
+    const [wifiName, setWifiName] = useState(serverWifiName);
+    const [wifiPassword, setWifiPassword] = useState("");
+    const [isUsingWifi, setIsUsingWifi] = useState(false);
+    const [wifiString, setWifiString] = useState("");
+    useEffect(
+        () => {
+            if (isUsingWifi) {
+                setWifiString(`?name=${wifiName}&pw=${wifiPassword}`);
+            } else {
+                setWifiString("");
+            }
+        }, [wifiName, wifiPassword, isUsingWifi]
+    );
     return (
-        <SideQR href={gmLink} >
+        <SideQR qrs={[{title: "Set up gamemaster's device", href: gmLink}]} >
             <h1>Welcome to <span className="i">The Team from Turtle Bay: Operation Pantheon</span>!</h1>
             <p>This game has a number of moving parts:
                 <ol>
@@ -32,7 +51,16 @@ export default function Index() {
                 </ol>
             </p>
             <p>If, for some reason, people are failing to connect to the server, make sure that they're on the right WiFi network.</p>
-            <p>Once you're ready, <a href={featureLink}>click here</a> to show the feature display (or, if you'd rather do that on another device, point its browser to <a href={featureLink}>{featureLink}</a>).</p>
+            <p>Once you're ready, <a href={`${featureLink}${wifiString}`}>click here</a> to show the feature display (or, if you'd rather do that on another device, point its browser to <a href={`${featureLink}${wifiString}`}>{featureLink}{wifiString}</a>).</p>
+            <p>Players will scan one QR code to join the game.  If you want, you can provide another one that they can scan to connect to your WiFi network, to avoid everybody having to type in the password.  To do this, just type the network name and password into the form below.</p>
+            <form>
+                <label>
+                    Network name: <input type="text" value={wifiName} onChange={(e) => {setIsUsingWifi(true); setWifiName(e.target.value)}}></input>
+                </label>
+                <label>
+                    Password: <input type="text" value={wifiPassword} onChange={(e) => {setIsUsingWifi(true); setWifiPassword(e.target.value)}}></input>
+                </label>
+            </form>
         </SideQR>
     );
 }
