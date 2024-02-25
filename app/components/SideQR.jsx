@@ -13,7 +13,7 @@ export default function SideQR({qrs, children}) {
                     qrs.map(({title, href}, i) => <div className={styles.singleQR} key={i}>
                         <QRCode
                             value={href}
-                            bgColor="#009edb"
+                            bgColor="#0eabd8"
                             fgColor="white" />
                         <div className={styles.qrTitle}>{title}</div>
                     </div>)
