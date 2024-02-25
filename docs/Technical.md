@@ -6,7 +6,7 @@
 2. The gamemaster's page, from which the game can be advanced and new puzzles made available for players to solve.  Someone should have this on their phone.
 3. Various pages that the players access over the course of the game.
 
-The game code cannot run on its own.  You will need to [install Node](https://nodejs.org/en/download), which is available for all major platforms, and then point it to the `server.js` file in a released build.
+The game code cannot run on its own.  You will need to [install Node](https://nodejs.org/en/download), which is available for all major platforms.  Then, download the most recent release, extract the `game.zip` folder to a location of your choice, and, within that location, run `node server.js`.
 
 Some of the game state is stored in the server's memory, and some is stored in client (player and gamemaster) browsers.  To reset the game state, first shut down the Node server, then clear all cookies associated with that server's IP address in all relevant browsers.  You can then restart the Node server and you'll have a completely clean slate.  This should not be necessary to do in general.
 
