@@ -35,7 +35,11 @@ jobs:
       uses: docker://pandoc/latex:3.1
       with: 
         args: "-o Technical.pdf docs/Technical.md"
-    - run: zip -r docs.zip Checklist.pdf Solutions.pdf Technical.pdf
+    - name: Pandoc credits
+      uses: docker://pandoc/latex:3.1
+      with: 
+        args: "-o Credits.pdf docs/Credits.md"
+    - run: zip -r docs.zip Checklist.pdf Solutions.pdf Technical.pdf Credits.pdf
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
